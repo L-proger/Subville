@@ -1,0 +1,30 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "EMail viewer";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Your latest emails</p>
+<br/>
+
+<table border="1" bordercolor="red" cellpadding="5">
+    <caption>Last few messages</caption>
+    <tr>
+        <th>Subject</th>
+        <th>SendDate</th>
+        <th>ReceiveDate</th>
+        <th>MessageID</th>
+    </tr>
+    @{
+        foreach (var message in Server.Integrations.EMail.GetMail()){
+            <tr>
+                <td>@message.Subject</td>
+                <td>@message.SendDate</td>
+                <td>@message.ReceiveDate</td>
+                <td>@message.Id</td>
+            </tr>
+        }
+    }
+</table>
+
