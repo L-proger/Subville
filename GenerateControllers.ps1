@@ -1,0 +1,1 @@
+nswag openapi2cscontroller  /input:$PSScriptRoot/Api/Api.yaml /classname:ServiceClient /GenerateOptionalParameters:true  /namespace:Subville /output:$PSScriptRoot/generated_server/SubvilleApiController.cs /UseLiquidTemplates:true /AspNetNamespace:"Microsoft.AspNetCore.Mvc" /ControllerBaseClass:"Microsoft.AspNetCore.Mvc.Controller"
