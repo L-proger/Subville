@@ -1,0 +1,2391 @@
+openapi: 3.0.3
+info:
+  title: close.io
+  description: This is a Close CRM OpenAPI description created by Antilatency
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://api.close.com/api/v1
+paths:
+  /activity/:
+    get:
+      tags:
+      - activities
+      summary: List activities
+      operationId: listActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id__in
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: contact_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: contact_id__in
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: _type
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: _type__in
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: _fields
+        in: query
+        description: Fields to query
+        allowEmptyValue: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of leads
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/call/:
+    get:
+      tags:
+      - activities
+      summary: List Call activities
+      operationId: listCallActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of Call activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityCallArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/created/:
+    get:
+      tags:
+      - activities
+      summary: List Created activities
+      operationId: listCreatedActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of leads
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityCreatedArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/note/:
+    get:
+      tags:
+      - activities
+      summary: List Note activities
+      operationId: listNoteActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of Note activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityNoteArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/sms/:
+    get:
+      tags:
+      - activities
+      summary: List Sms activities
+      operationId: listSmsActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of Sms activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivitySmsArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/status_change/lead/:
+    get:
+      tags:
+      - activities
+      summary: List LeadStatusChange activities
+      operationId: listLeadStatusChangeActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of LeadStatusChange activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityLeadStatusChangeArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/status_change/opportunity/:
+    get:
+      tags:
+      - activities
+      summary: List OpportunityStatusChange activities
+      operationId: listOpportunityStatusChangeActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: opportunity_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of OpportunityStatusChange activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityOpportunityStatusChangeArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/emailthread/:
+    get:
+      tags:
+      - activities
+      summary: List EmailThread activities
+      operationId: listEmailThreadActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of EmailThread activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityEmailThreadArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/email/:
+    get:
+      tags:
+      - activities
+      summary: List Email activities
+      operationId: listEmailActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of Email activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityEmailArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/meeting/:
+    get:
+      tags:
+      - activities
+      summary: List Meeting activities
+      operationId: listMeetingActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of Meeting activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityMeetingArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/task_completed/:
+    get:
+      tags:
+      - activities
+      summary: List TaskCompleted activities
+      operationId: listTaskCompletedActivities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of TaskCompleted activities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityTaskCompletedArray'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/created/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get Created activity by id
+      operationId: getCreatedActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityCreated
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityCreated'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/note/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get Note activity by id
+      operationId: getNoteActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityNote
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityNote'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+    delete:
+      tags:
+      - activities
+      description: Delete Note activity using id
+      operationId: deleteNoteActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Ok
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /activity/emailthread/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get EmailThread activity by id
+      operationId: getEmailThreadActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityEmailThread
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityEmailThread'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+    delete:
+      tags:
+      - activities
+      description: Delete EmailThread activity using id
+      operationId: deleteEmailThreadActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Ok
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /activity/email/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get Email activity by id
+      operationId: getEmailActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityEmail
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityEmail'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+    delete:
+      tags:
+      - activities
+      description: Delete Email activity using id
+      operationId: deleteEmailActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Ok
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /activity/sms/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get Sms activity by id
+      operationId: getSmsActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivitySms
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivitySms'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+    delete:
+      tags:
+      - activities
+      description: Delete Sms activity using id
+      operationId: deleteSmsActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Ok
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /activity/call/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get Call activity by id
+      operationId: getCallActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityCall
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityCall'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+    delete:
+      tags:
+      - activities
+      description: Delete Call activity using id
+      operationId: deleteCallActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Ok
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /activity/meeting/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get Meeting activity by id
+      operationId: getMeetingActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityMeeting
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityMeeting'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+    delete:
+      tags:
+      - activities
+      description: Delete Meeting activity using id
+      operationId: deleteMeetingActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Ok
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /activity/status_change/lead/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get LeadStatusChange activity by id
+      operationId: getLeadStatusChangeActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityLeadStatusChange
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityLeadStatusChange'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/status_change/opportunity/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get OpportunityStatusChange activity by id
+      operationId: getOpportunityStatusChangeActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityOpportunityStatusChange
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityOpportunityStatusChange'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+  /activity/task_completed/{id}/: 
+    get:
+      tags:
+      - activities
+      description: Get TaskCompleted activity by id
+      operationId: getTaskCompletedActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: ActivityTaskCompleted
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ActivityTaskCompleted'
+      security:
+      - api_key:
+        - write:activity
+        - read:activity
+    delete:
+      tags:
+      - activities
+      description: Delete TaskCompleted activity using id
+      operationId: deleteTaskCompletedActivity
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: activity identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Ok
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /contact/:
+    get:
+      tags:
+      - contacts
+      description: List contacts
+      operationId: listContacts
+      responses:
+        200:
+          description: A list of contacts
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ContactArray'
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /contact/{id}/: 
+    get:
+      tags:
+      - contacts
+      description: Get contact by id
+      operationId: getContact
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: contact identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Lead
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Contact'
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+    delete:
+      tags:
+      - contacts
+      description: Delete contact using id
+      operationId: deleteContact
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: contact identifier 
+        schema:
+          type: string
+      responses:
+        200:         
+          description: Ok
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /lead/:
+    get:
+      tags:
+      - leads
+      summary: List or search for leads
+      operationId: listLeads
+      parameters:
+      - name: query
+        in: query
+        description: Query string
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: _limit
+        in: query
+        description: Pet object that needs to be added to the store
+        allowEmptyValue: false
+        schema:
+          type: integer
+      - name: _skip
+        in: query
+        description: Pet object that needs to be added to the store
+        allowEmptyValue: false
+        schema:
+          type: integer
+      - name: _fields
+        in: query
+        description: Fields to query
+        allowEmptyValue: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of leads
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/LeadArray'
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /lead/merge/:
+    post:
+      tags:
+      - leads
+      summary: Merge leads
+      operationId: mergeLeads
+      requestBody:
+        description: Parameters
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeadMergeArgs'
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: Success
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+  /lead/{id}/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: the lead identifier 
+      schema:
+        type: string
+    - name: _fields
+      in: query
+      description: Fields to query
+      allowEmptyValue: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+    get:
+      tags:
+        - leads
+      summary: Get lead by id
+      operationId: getLead
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: Lead
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Lead'
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+    delete:
+      tags:
+      - leads
+      summary: Delete lead
+      operationId: deleteLead
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: the lead identifier 
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: Success
+
+  /opportunity/:
+    get:
+      tags:
+      - opportunities
+      summary: List or search for opportunities
+      operationId: listOpportunities
+      parameters:
+      - name: lead_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: user_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: status_id
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: status_label
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: status_type
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__lte
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_created__gte
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_updated__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_updated__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_updated__lte
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_updated__gte
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_won__lt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_won__gt
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_won__lte
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: date_won__gte
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: value_period
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: query
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: _order_by
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: _group_by
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      - name: _fields
+        in: query
+        allowEmptyValue: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: lead_query
+        in: query
+        allowEmptyValue: false
+        schema:
+          type: string
+      responses:
+        400:
+          $ref: '#/components/responses/RequestIssue'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/OperationNotAllowed'
+        405:
+          $ref: '#/components/responses/HttpMethodNotSupported'
+        415:
+          $ref: '#/components/responses/UnsupportedFormat'
+        200:         
+          description: A list of Opportunities
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/OpportunityArray'
+      security:
+      - api_key:
+        - write:lead
+        - read:lead
+
+components:
+  responses:
+    RequestIssue:
+      description: Issue with the request
+      content: {}
+    Unauthorized:
+      description: Request needs to be authenticated
+      content: {}
+    OperationNotAllowed:
+      description: Operation not allowed
+      content: {}
+    HttpMethodNotSupported:
+      description: HTTP method not supported
+      content: {}
+    UnsupportedFormat:
+      description: Request used an unsupported format
+      content: {}
+  schemas:
+    MeetingAttendee:
+      type: object
+      properties:
+        status:
+          type: string
+        user_id:
+          type: string
+        name:
+          type: string
+        contact_id:
+          type: string
+        is_organizer:
+          type: string
+        email:
+          type: string
+    ActivityOpportunityStatusChange:
+      type: object
+      properties:
+        organization_id:
+          type: string
+        _type:
+          type: string
+        contact_id:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        date_created:
+          type: string
+        date_updated:
+          type: string
+        lead_id:
+          type: string
+        new_status_id:
+          type: string
+        new_status_label:
+          type: string
+        new_status_type:
+          type: string
+        new_pipeline_id:
+          type: string
+        old_status_id:
+          type: string
+        old_status_label:
+          type: string
+        old_status_type:
+          type: string
+        old_pipeline_id:
+          type: string
+        opportunity_date_won:
+          type: string
+        opportunity_id:
+          type: string
+        opportunity_value:
+          type: string
+        opportunity_value_formatted:
+          type: string
+        opportunity_value_currency:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+        id:
+          type: string
+    ActivityOpportunityStatusChangeArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityOpportunityStatusChange'
+    ActivityLeadStatusChange:
+      type: object
+      properties:
+        organization_id:
+          type: string
+        _type:
+          type: string
+        contact_id:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        date_created:
+          type: string
+        date_updated:
+          type: string
+        lead_id:
+          type: string
+        new_status_id:
+          type: string
+        new_status_label:
+          type: string
+        old_status_id:
+          type: string
+        old_status_label:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+        id: 
+          type: string
+    ActivityLeadStatusChangeArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityLeadStatusChange'
+    ActivityMeeting:
+      type: object
+      properties:
+        date_updated:
+          type: string
+        created_by_name:
+          type: string
+        contact_id:
+          type: string
+        duration:
+          type: string
+        id:
+          type: string
+        updated_by_name:
+          type: string
+        updated_by:
+          type: string
+        attendees:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeetingAttendee'
+        title: 
+          type: string
+        created_by:
+          type: string
+        calendar_event_link:
+          type: string
+        note:
+          type: string
+        source:
+          type: string
+        location:
+          type: string
+        user_name:
+          type: string
+        status:
+          type: string
+        _type:
+          type: string
+        users:
+          type: array
+          items:
+            type: string
+        organization_id:
+          type: string
+        user_id:
+          type: string
+        ends_at:
+          type: string
+        connected_account_id:
+          type: string
+        is_recurring:
+          type: boolean
+        lead_id:
+          type: string
+        starts_at:
+          type: string
+        date_created:
+          type: string
+    ActivityMeetingArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityMeeting'
+    ActivityCall:
+      type: object
+      properties:
+        organization_id:
+          type: string
+        _type:
+          type: string
+        voicemail_url:
+          type: string
+        updated_by:
+          type: string
+        date_updated:
+          type: string
+        recording_url:
+          type: string
+        voicemail_duration:
+          type: string
+        direction:
+          type: string
+        disposition:
+          type: string
+        source:
+          type: string
+        created_by:
+          type: string
+        note:
+          type: string
+        local_phone:
+          type: string
+        local_phone_formatted:
+          type: string
+        remote_phone:
+          type: string
+        remote_phone_formatted:
+          type: string
+        phone:  
+          type: string
+        contact_id:
+          type: string
+        date_created:
+          type: string
+        duration:
+          type: integer
+        user_id:
+          type: string
+        id:
+          type: string
+        lead_id:
+          type: string
+        call_method:
+          type: string
+        dialer_id:
+          type: string
+        dialer_saved_search_id:
+          type: string
+        cost:
+          type: string
+        local_country_iso:
+          type: string
+        remote_country_iso:
+          type: string
+    ActivityCallArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityCall'
+    ActivityCreated:
+      type: object
+      properties:
+        _type:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        date_updated:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        organization_id:
+          type: string
+        source:
+          type: string
+        contact_id:
+          type: string
+        date_created:
+          type: string
+        id:
+          type: string
+        lead_id:
+          type: string
+    ActivityCreatedArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityCreated'
+    ActivityEmail:
+      type: object
+      properties:
+        attachments:
+          type: array
+          items:
+            type: string
+        body_text:
+          type: string
+        date_updated:
+          type: string
+        direction:
+          type: string
+        contact_id:
+          type: string
+        id:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        to:
+          type: array
+          items:
+            type: string
+        subject:
+          type: string
+        opens:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+        _type:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        envelope:
+          $ref: '#/components/schemas/EmailEnvelope'
+        body_html:
+          type: string
+        organization_id:
+          type: string
+        body_text_quoted:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailQuotedText'
+        send_attempts:
+          type: array
+          items:
+            type: string
+        lead_id:
+          type: string
+        sender:
+          type: string
+        bcc:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        date_created:
+          type: string
+        template_id:
+          type: string
+        cc:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+    ActivityEmailArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityEmail'
+    ActivityEmailThread:
+      type: object
+      properties:
+        _type:
+          type: string
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailExtended'
+        id:
+          type: string
+        latest_normalized_subject:
+          type: string
+        lead_id:
+          type: string
+        n_emails:
+          type: integer
+        organization_id:
+          type: string
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        user_id:
+          type: string
+        user_name:
+          type: string
+        users:
+          type: array
+          items:
+            type: string
+        contact_id:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        date_created:
+          type: string
+        date_updated:
+          type: string
+    ActivityEmailThreadArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityEmailThread'
+    ActivitySms:
+      type: object
+      properties:
+        id:
+          type: string
+        _type:
+          type: string
+        date_sent:
+          type: string
+        direction:
+          type: string
+        status:
+          type: string
+        cost:
+          type: string
+        local_phone:
+          type: string
+        local_country_iso:
+          type: string
+        remote_phone:
+          type: string
+        remote_phone_formatted:
+          type: string
+        remote_country_iso:
+          type: string
+        text:
+          type: string
+        organization_id:
+          type: string
+        lead_id:
+          type: string
+        contact_id:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        date_created:
+          type: string
+        date_updated:
+          type: string
+    ActivitySmsArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivitySms'
+    ActivityTaskCompleted:
+      type: object
+      properties:
+        _type:
+          type: string
+        id:
+          type: string
+        task_id:
+          type: string
+        task_text:
+          type: string
+        user_id:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        organization_id:
+          type: string
+        lead_id:
+          type: string
+        date_created:
+          type: string
+        date_updated:
+          type: string
+    ActivityTaskCompletedArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityTaskCompleted'
+    ActivityNote:
+      type: object
+      properties:
+        organization_id:
+          type: string
+        _type:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        date_updated:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        note:
+          type: string
+        contact_id:
+          type: string
+        date_created:
+          type: string
+        id:
+          type: string
+        lead_id:
+          type: string
+    ActivityNoteArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivityNote'
+    ActivityArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        total_results:
+          type: integer
+        data:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/ActivityCreated'
+              - $ref: '#/components/schemas/ActivityEmail'
+              - $ref: '#/components/schemas/ActivityNote'
+              - $ref: '#/components/schemas/ActivityEmailThread'
+    EmailUser:
+      type: object
+      properties:
+        email:
+          type: string
+        name: 
+          type: string
+    EmailQuotedText:
+      type: object
+      properties:
+        text:
+          type: string
+        expand:
+          type: boolean
+    EmailEnvelope:
+      type: object
+      properties:
+        from:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        sender:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        to:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        cc:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        bcc:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        reply_to:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        date:
+          type: string
+        in_reply_to:
+          type: string
+        message_id:
+          type: string
+        subject:
+          type: string
+    EmailExtended:
+      type: object
+      properties:
+        _type:
+          type: string
+        status:
+          type: string
+        sender:
+          type: string
+        subject:
+          type: string
+        body_preview:
+          type: string
+        to:
+          type: array
+          items:
+            type: string
+        cc:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        bcc:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailUser'
+        direction:
+          type: string
+        date_sent:
+          type: string
+        contact_id:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        date_created:
+          type: string
+        date_updated:
+          type: string
+        email_account_id:
+          type: string
+        envelope:
+          $ref: '#/components/schemas/EmailEnvelope'
+        id:
+          type: string
+        in_reply_to_id:
+          type: string
+        lead_id:
+          type: string
+        message_ids:
+          type: array
+          items:
+            type: string
+        opens:
+          type: array
+          items:
+            type: string
+        opens_summary:
+          type: string
+        organization_id:
+          type: string
+        references:
+          type: array
+          items: 
+            type: string
+        send_attempts:
+          type: array
+          items:
+            type: string
+        template_id:
+          type: string
+        template_name:
+          type: string
+        thread_id:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+        users:
+          type: array
+          items:
+            type: string
+        attachments:
+          type: array
+          items:
+            type: string
+        sequence_subscription_id:
+          type: string
+        sequence_id:
+          type: string
+        sequence_name:
+          type: string
+    Phone:
+      type: object
+      properties:
+        phone:
+          type: string
+        phone_formatted:
+          type: string
+        type:
+          type: string
+    Email:
+      type: object
+      properties:
+        type:
+          type: string
+        email:
+          type: string
+    IntegrationLink:
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+    Contact:
+      type: object
+      properties:
+        integration_links:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationLink'
+        name:
+          type: string
+        date_created:
+          type: string
+        lead_id:
+          type: string
+        urls:
+          type: array
+          items:
+            type: string
+        title:
+          type: string
+        display_name:
+          type: string
+        date_updated:
+          type: string
+        id:
+          type: string
+        organization_id:
+          type: string
+        created_by:
+          type: string
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+        updated_by:
+          type: string
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/Email'
+      #additionalProperties: true
+    CustomField:
+      type: object
+      #additionalProperties:
+      #  type: string   
+    Opportunity:
+      type: object
+      properties:
+        status_id:
+          type: string
+        status_type:
+          type: string
+        created_by:
+          type: string
+        lead_id:
+          type: string
+        date_created:
+          type: string
+        date_won: 
+          type: string
+        note:
+          type: string
+        value_currency:
+          type: string
+        expected_value: #TODO: Check me
+          type: string
+        value_formatted:
+          type: string
+        value_period:
+          type: string
+        value:
+          type: string
+        annualized_value: #TODO: Check me
+          type: string
+        lead_name:
+          type: string
+        created_by_name: #TODO: Check me
+          type: string
+        updated_by:
+          type: string
+        organization_id:
+          type: string
+        id:
+          type: string
+        status_label:
+          type: string
+        confidence:
+          type: string
+        date_updated:
+          type: string
+        contact_id:
+          type: string
+        user_id:
+          type: string
+        user_name:
+          type: string
+        integration_links:  #TODO: Check me
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationLink'
+        date_lost: #TODO: Check me
+          type: string
+        updated_by_name: #TODO: Check me
+          type: string
+        contact_name: #TODO: Check me
+          type: string
+        status_display_name: #TODO: Check me
+          type: string
+        annualized_expected_value: #TODO: Check me
+          type: string
+    CountByValuePeriod:
+      type: object
+      properties:
+        one_time: 
+          type: integer
+        monthly: 
+          type: integer
+        annual: 
+          type: integer
+    OpportunityArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        total_results:
+          type: integer
+        count_by_value_period:
+          $ref: '#/components/schemas/CountByValuePeriod'
+        total_value_one_time:
+          type: string
+        total_value_one_time_formatted:
+          type: string
+        total_value_monthly:
+          type: string
+        total_value_monthly_formatted:
+          type: string
+        total_value_annual:
+          type: string
+        total_value_annual_formatted:
+          type: string
+        total_value_annualized:
+          type: string
+        total_value_annualized_formatted:
+          type: string
+        expected_value_one_time:
+          type: string
+        expected_value_one_time_formatted:
+          type: string
+        expected_value_monthly:
+          type: string
+        expected_value_monthly_formatted:
+          type: string
+        expected_value_annual:
+          type: string
+        expected_value_annual_formatted:
+          type: string
+        expected_value_annualized:
+          type: string
+        expected_value_annualized_formatted:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opportunity'
+    LeadMergeArgs:
+      type: object
+      properties:
+        source:
+          type: string
+        destination:
+          type: string
+    Lead:
+      type: object
+      properties:
+        updated_by_name:
+          type: string
+        custom:
+          type: object
+          additionalProperties:
+            type: string
+        display_name:
+          type: string
+        date_updated:
+          type: string
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+        organization_id:
+          type: string
+        created_by:
+          type: string
+        description:
+          type: string
+        status_label:
+          type: string
+        updated_by:
+          type: string
+        integration_links:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationLink'
+        name:
+          type: string
+        date_created:
+          type: string
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        status_id:
+          type: string
+        id:
+          type: string
+        url:
+          type: string
+        opportunities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Opportunity'
+        html_url:
+          type: string
+        created_by_name: 
+          type: string
+        addresses:
+          type: array
+          items:
+            type: string
+      #additionalProperties: true
+    LeadArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        total_results:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Lead'
+    ContactArray:
+      type: object
+      properties:
+        has_more:
+          type: boolean
+        total_results:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    Task:
+      type: object
+      properties:
+        _type:
+          type: string
+        assigned_to:
+          type: string
+        assigned_to_name:
+          type: string
+        contact_id:
+          type: string
+        contact_name:
+          type: string
+        created_by:
+          type: string
+        created_by_name:
+          type: string
+        date:
+          type: string
+        date_created:
+          type: string
+        date_updated:
+          type: string
+        id:
+          type: string
+        is_complete:
+          type: boolean
+        is_dateless:
+          type: boolean
+        lead_id:
+          type: string
+        lead_name:
+          type: string
+        object_id:
+          type: string
+        object_type:
+          type: string
+        organization_id:
+          type: string
+        text:
+          type: string
+        updated_by:
+          type: string
+        updated_by_name:
+          type: string
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: basic
