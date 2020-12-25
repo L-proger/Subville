@@ -1,0 +1,96 @@
+﻿@page "{repositoryname}/{*repositorysubpath}"
+@using Microsoft.AspNetCore.Html
+@model Server.Pages.Subversion.RepositoryBrowserModel
+@{
+    ViewData["Title"] = "Repository browser";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @{
+            for (int i = 0; i < Model.PathItems().Count; ++i) {
+                <li class="breadcrumb-item @(i == Model.PathItems().Count - 1 ? "active" : "")"><a href="/Subversion/RepositoryBrowser/@string.Join('/', Model.PathItems().Take(i + 1))">@Model.PathItems()[i]</a></li>
+            }
+
+        }
+    </ol>
+</nav>
+
+
+
+
+@{
+    if (Model.Content == null)
+    {
+        <table  class="table table-striped">
+            <caption>Files: @Model.RepositoryName  @Model.RepositorySubpath</caption>
+            <tr>
+                <th>Kind</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Revision</th>
+                <th>Size</th>
+            </tr>
+            @{
+                if (Model.Data.Entry != null)
+                {
+                    foreach (var entry in Model.Data.Entry) {
+                        <tr>
+                            <td>@entry.Kind</td>
+                            <td>
+                                <a href="@Model.GetSubpath(@entry.Name)">@entry.Name@(entry.Kind == "dir"? "/" : "")</a>
+                            </td>
+
+                            <td>@entry.Commit.Author</td>
+                            <td>@entry.Commit.Revision</td>
+                            <td>@entry.Size</td>
+                        </tr>
+                    }
+                }
+        
+            }
+        </table>
+    }
+    else
+    {
+        <div style="padding: 16px;
+                                      margin: -1px -1px 0;
+                                      background-color: #f6f8fa; 
+                                      border: 1px solid #e1e4e8;
+                                      border-top-left-radius: 6px;
+                                      border-top-right-radius: 6px;
+                                      box-sizing: border-box;
+                                  ">
+            @(Model.LinesCount) lines
+        </div>
+
+
+        <div style="        padding: 16px;
+        margin: -1px -1px 0;
+
+        border: 1px solid #e1e4e8;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        box-sizing: border-box;
+    ">
+            @Html.Raw(Model.FormattedContent)
+        </div>
+
+
+      
+       
+       
+       
+    }
+}
+
+
+
+
+
+

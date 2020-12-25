@@ -24,22 +24,23 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Mail">Mail</a>
                     </li>
-                        
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Subversion/Repositories">Subversion</a>
+                    </li>
+
                     @{
-                        if (User.Identity.IsAuthenticated)
-                        {
+                        if (User.Identity.IsAuthenticated) {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" id="mylink" href="">Logout</a>
                             </li>
-                        }
-                        else
-                        {
+                        } else {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
                             </li>
                         }
                     }
-                      
+
                 </ul>
             </div>
         </div>
@@ -58,7 +59,7 @@
 </script>
 
 
-<div class="container-fluid">
+<div class="container">
         <main  >
             @RenderBody()
         </main>

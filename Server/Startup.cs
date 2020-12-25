@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,47 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Server.Controllers;
+using Server.Integrations;
 
 namespace Server
 {
+
+    public class SubvilleApiImpl : ControllerBase, ISubvilleApiController
+    {
+
+        public Subversion Subversion { get; private set; } = new Subversion();
+       
+
+        public SubvilleApiImpl()
+        {
+            
+            Debug.WriteLine("SubvilleApiImpl construct");
+        }
+
+        public async Task<ActionResult<TokenResponse>> GetTokenAsync(LoginRequest body)
+        {
+
+            return Ok((new TokenResponse()).ToJson());
+            //return BadRequest("WTF");
+            //throw new NotImplementedException();
+        }
+
+        public async Task<ActionResult<RepositoryDescriptionArray>> ListRepositoriesAsync(int? _limit, int? _skip) {
+            return Ok((new RepositoryDescriptionArray( ){Total_results = 777}).ToJson());
+        }
+
+
+        public string[] GetRepositoriesList()
+        {
+            return null;
+        }
+       
+    }
+
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -59,7 +97,7 @@ namespace Server
                     };
                 });
 
-
+            services.AddSingleton<ISubvilleApiController, SubvilleApiImpl>();
 
             services.AddRazorPages();
         }
