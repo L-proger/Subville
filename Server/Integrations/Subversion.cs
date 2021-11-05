@@ -14,7 +14,7 @@ namespace Server.Integrations {
 
         public string[] GetRepositories()
         {
-            return Directory.GetDirectories(RepositoriesRoot).Select(v=> Path.GetFileName(v)).ToArray();
+            return Directory.GetDirectories(RepositoriesRoot).Where(v=> IsRepository(v)).Select(v=> Path.GetFileName(v)).ToArray();
         }
 
         public bool IsRepository(string name)
@@ -106,6 +106,21 @@ namespace Server.Integrations {
             var lists = DeserializeXml<SvnLists>(combinedResult);
             return lists.Lists[0];
 
+        }
+
+        public int GetFileSize(string repoName, string relativeFilePath)
+        {
+            var repoPath = RepositoriesRoot + "/" + repoName;
+            var subPath = "/" + relativeFilePath;
+
+            var result = SystemProcess.Execute("svnlook", false, $"filesize {repoPath} {subPath}");
+            if (result.exitCode != 0) {
+                throw new Exception(string.Join("\r\n", result.errBuffer));
+            }
+
+
+            return int.Parse(result.outBuffer[0]); // string.Join("\r\n", result.outBuffer);
+            //svnlook filesize  E:/Repositories/TestRepo1 /trunk/InspectorButton.cs
         }
 
 

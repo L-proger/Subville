@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "jsdelivr",
+      "library": "@primer/octicons@11.2.0",
+      "destination": "wwwroot/lib/primer/octicons/"
+    },
+    {
+      "library": "octicons@8.5.0",
+      "destination": "wwwroot/lib/octicons/"
+    }
+  ]
+}

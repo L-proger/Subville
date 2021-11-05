@@ -21,7 +21,7 @@
         foreach (var repo in Model.Data) {
             <tr>
                 <td>
-                    <a class="page-link" href="/Subversion/RepositoryBrowser/@repo" >@repo</a>
+                    <a href="/Subversion/RepositoryBrowser/@repo" >@repo</a>
                 </td>
                 <td>@((Model.Subversion as SubvilleApiImpl).Subversion.IsRepository(repo))</td>
             </tr>
