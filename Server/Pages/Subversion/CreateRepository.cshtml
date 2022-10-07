@@ -1,0 +1,53 @@
+﻿@page
+@model Server.Pages.Subversion.CreateRepositoryModel
+@{
+    ViewData["Title"] = "Create a new repository";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" asp-page-handler="create">
+<div class="editor-field">
+  <label class="editor-field-label">Name:</label>
+  <input name="name" value="" type="text" class="input-xlarge" id="name" >
+</div>
+
+<div margin-topopeditor-field">
+  <label class="editor-field-label">Initialize:</label>
+  
+  <div class="editor-radio-group">
+
+    <label style="overflow: auto; display: block;">
+  	  <input type="radio" name="templateId" checked="checked" value="0" id="templateId">
+  	  <span >Create standard trunk/branches/tags structure</span>
+    </label>
+
+    <label style="overflow: auto; display: block;">
+  	  <input type="radio" name="templateId" value="1" id="templateId">
+      <span class="help-inline">Empty repository</span>
+    </label>
+
+  </div>
+</div>
+
+<div style="overflow:auto; margin-top: 10px">
+  
+    <div class="float-right">
+        <button type="submit" ID="Button1" class="btn  btn-success" >
+            Create repository
+        </button>
+
+    </div>
+
+</div>
+
+</form>
+
+@{
+    if (!string.IsNullOrEmpty(Model.Message)) {
+        <h1>Message: @Model.Message</h1>
+    }
+}
+
+

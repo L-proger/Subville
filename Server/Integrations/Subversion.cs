@@ -123,6 +123,25 @@ namespace Server.Integrations {
             //svnlook filesize  E:/Repositories/TestRepo1 /trunk/InspectorButton.cs
         }
 
+        void Mkdir(string repoName, params string[] subpath) {
+            var request = $"mkdir -m \"Create initial repo layout\" {string.Join(" ", subpath.Select(v => FileSchemeRepositoriesRoot + "/" + repoName + "/" + v))}";
+            var result = SystemProcess.Execute("svn", false, request);
+            if (!result.Success) {
+                throw new Exception(string.Join("\r\n", result.errBuffer));
+            }
+        }
+
+        public void CreateRepository(string name, bool createLayout) {
+            var result = SystemProcess.Execute("svnadmin", false, $"create {RepositoriesRoot + "/" + name}");
+            if(!result.Success) {
+                throw new Exception(string.Join("\r\n", result.errBuffer));
+            }
+
+
+            if (createLayout) {
+                Mkdir(name, "branches", "tags", "trunk");
+            }
+        }
 
 
         /*func isRepository(path string) bool {

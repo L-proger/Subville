@@ -69,3 +69,29 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.editor-field {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.editor-field-label {
+    margin-right: 20px;
+    float: left;
+    width: 180px;
+    text-align: left;
+}
+
+.editor-field-controls-area {
+    overflow: auto;
+    display: block;
+}
+
+div.editor-radio-group {
+    background-color: #cce4ff;
+    overflow: auto;
+    display: inline-block;
+    border: 1px #000000;
+    padding:5px
+}

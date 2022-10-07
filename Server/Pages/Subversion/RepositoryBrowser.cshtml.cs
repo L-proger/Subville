@@ -64,6 +64,7 @@ namespace Server.Pages.Subversion
 
 
         private IWebHostEnvironment Environment;
+        public Octicons Icons;
 
         //svnlook filesize  E:/Repositories/TestRepo1 /trunk/InspectorButton.cs
         public string FormattedContent {
@@ -92,6 +93,7 @@ namespace Server.Pages.Subversion
         public RepositoryBrowserModel(ISubvilleApiController subversionApi, IWebHostEnvironment _environment) {
             Api = (subversionApi as SubvilleApiImpl);
             Environment = _environment;
+            Icons = new Octicons(_environment);
         }
 
 

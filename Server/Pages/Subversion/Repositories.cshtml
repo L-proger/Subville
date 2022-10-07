@@ -1,15 +1,30 @@
 ﻿@page 
-@model Server.Pages.SubversionModel
+@model Server.Pages.Subversion.RepositoriesModel
 @{
     ViewData["Title"] = "Subversion repositories list";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
+<div>
 <h1>@ViewData["Title"]</h1>
-<br />
 
 
+<div style="overflow:auto;">
+  
+    <div class="float-right">
+        <a asp-page="/Subversion/CreateRepository">
+    <button type="button" ID="Button1" class="btn  btn-success" title="Checkout" >
+        @Model.Icons.GetIconHtml("download-16")
+        New
+    </button>
+    </a>
 
+    </div>
+
+</div>
+
+
+<div>
 <table border="1" bordercolor="red" cellpadding="5">
     <caption>Repositories</caption>
     <tr>
@@ -61,4 +76,5 @@
             </li>
         }
     </ul>
+</div>
 </div>
