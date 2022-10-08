@@ -8,6 +8,13 @@ using System.Xml.Serialization;
 
 namespace Server.Integrations {
     public class Subversion {
+
+   
+        public string GetCheckoutUrl(string repoName, string subpath) {
+            return FileSchemeRepositoriesRoot + "/" + repoName + (string.IsNullOrWhiteSpace(subpath) ? "" : "/" + subpath);
+        }
+
+
         public string RepositoriesRoot => @"E:/Repositories";
         public string FileSchemeUrlPrefix => @"file:///";
         public string FileSchemeRepositoriesRoot => FileSchemeUrlPrefix + RepositoriesRoot;

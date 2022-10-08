@@ -1,1 +1,0 @@
-nswag openapi2csclient /input:$PSScriptRoot/Api/Api.yaml /classname:ServiceClient /GenerateOptionalParameters:true  /namespace:Subville /InjectHttpClient:false /ClientBaseClass:SubvilleBase  /output:$PSScriptRoot/generated/SubvilleApi.cs
