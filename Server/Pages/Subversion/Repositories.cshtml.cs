@@ -34,5 +34,38 @@ namespace Server.Pages.Subversion {
             Data = fullData.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToArray();
             Count = fullData.Length;
         }
+
+        public class RepoListData {
+            public string Name { get; set; }
+            public string URL { get; set; }
+        }
+
+        public class RepoListPage {
+            public List<RepoListData> Data { get; set; }
+            public int Page { get; set; }
+            public int PageSize { get; set; }
+            public int PageCount { get; set; }
+        }
+
+        public JsonResult OnGetRepositoriesList(string filter, int pageIndex, int pageSize) {
+            var repoNames = (Subversion as SubvilleApiImpl).Subversion.GetRepositories();
+
+            if (!string.IsNullOrWhiteSpace(filter)) {
+                repoNames = repoNames.Where(x => x.ToLowerInvariant().Contains(filter.ToLowerInvariant())).ToArray();
+            }
+
+            RepoListPage result = new RepoListPage();
+            result.PageCount = (repoNames.Length + (pageSize - 1)) / pageSize;
+
+            if(pageIndex >= result.PageCount) {
+                pageIndex = result.PageCount - 1;
+            }
+
+            result.Page = pageIndex;
+            result.PageSize = pageSize;
+            result.Data = repoNames.Skip(pageIndex * pageSize).Take(pageSize).Select(x => new RepoListData() { Name = x, URL = $"/Subversion/RepositoryBrowser/{x}" }).ToList();
+
+            return new JsonResult(result);
+        }
     }
 }
